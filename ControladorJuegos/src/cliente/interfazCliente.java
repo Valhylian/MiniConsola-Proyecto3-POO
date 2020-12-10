@@ -160,6 +160,29 @@ public class interfazCliente {
 		frame.getContentPane().add(button_2);
 		button_2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					
+					
+					String Texto = "PRESIONA FLECHA IZQUIERDA";
+					String texto2 = textPane.getText().toString();
+					Socket cliente = new Socket("192.168.88.20",5000);
+					ObjectOutputStream mensaje = new ObjectOutputStream(cliente.getOutputStream());
+					mensaje.writeObject(Texto);
+					
+					ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
+					String mensaje2 = (String) entrada.readObject();
+					textPane.setText(mensaje2);
+					cliente.close();
+					
+				} catch (IOException ex) {
+					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (ClassNotFoundException ex) {
+				
+					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
+				
+				
+			}
 			}
 		});
 		
@@ -168,9 +191,31 @@ public class interfazCliente {
 		frame.getContentPane().add(button_3);
 		button_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				try {
+					
+					
+					
+					String Texto = "PRESIONA FLECHA ABAJO";
+					String texto2 = textPane.getText().toString();
+					Socket cliente = new Socket("192.168.88.20",5000);
+					ObjectOutputStream mensaje = new ObjectOutputStream(cliente.getOutputStream());
+					mensaje.writeObject(Texto);
+					
+					ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
+					String mensaje2 = (String) entrada.readObject();
+					textPane.setText(mensaje2);
+					cliente.close();
+					
+				} catch (IOException ex) {
+					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (ClassNotFoundException ex) {
+				
+					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
+				
+				
+			}
 			}
 		});
-		
 		
 		
 		
