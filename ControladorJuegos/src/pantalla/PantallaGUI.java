@@ -1,8 +1,12 @@
 package pantalla;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+
 
 public class PantallaGUI {
 
@@ -36,8 +40,16 @@ public class PantallaGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 1066, 721);
+		frame.setLayout(new GridLayout(50,50));
+		for (int i=0;i<50;i++) {
+			for (int j=0;j<50;j++) {
+				JButton btnNewButton = new JButton ();
+				btnNewButton.setBackground(new Color(0,0,0,0));
+				btnNewButton.setOpaque(false);
+				frame.getContentPane().add(btnNewButton); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-}
+}}}
+	
