@@ -3,6 +3,8 @@ package servidor;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,15 +25,15 @@ import cliente.interfazCliente;
 
 
 public class interfazServidor {
+
+	private JFrame frame;
+	private static JTextField recibidoServidor;
+	private JTextField enviarServidor;
 	
-	//prueba
 	static ServerSocket ss;
 	static Socket s;
-	
-	
-	private JFrame frame;
-	private JTextField recibidoServidor;
-	private JTextField enviarServidor;
+	static DataInputStream dis;
+	static DataOutputStream dout;
 
 	/**
 	 * Launch the application.
@@ -47,6 +49,22 @@ public class interfazServidor {
 				}
 			}
 		});
+		
+		try {
+			String message = "";
+			ss = new ServerSocket (5000);
+			s = ss.accept();
+			dis = new DataInputStream(s.getInputStream());
+			dout = new DataOutputStream (s.getOutputStream());
+			
+			while (!message.equals("exit")) {
+				message = dis.readUTF();
+				recibidoServidor.setText(message);
+				}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -70,7 +88,7 @@ public class interfazServidor {
 		frame.getContentPane().add(iniciarServidor);
 		iniciarServidor.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
+				/*
 				try {
 			
 					String Texto2 = enviarServidor.getText().toString();
@@ -93,7 +111,16 @@ public class interfazServidor {
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
 				
 				
-			}
+			}*/
+				
+				try {
+					String mess = enviarServidor.getText();
+					dout.writeUTF(mess);
+					enviarServidor.setText("");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

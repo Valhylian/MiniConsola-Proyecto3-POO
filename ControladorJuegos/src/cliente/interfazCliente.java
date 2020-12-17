@@ -23,6 +23,11 @@ import java.awt.event.ActionEvent;
 
 public class interfazCliente {
 	private static JTextPane textPane; 
+	static Socket s;
+	static DataInputStream dis;
+	static DataOutputStream dout;
+	static int i = 0;
+	
 
 	private JFrame frame;
 
@@ -40,6 +45,24 @@ public class interfazCliente {
 				}
 			}
 		});
+		
+		
+		try {
+
+			String message = "";
+			s = new Socket ("192.168.88.20",5000);
+			dis = new DataInputStream(s.getInputStream());
+			dout = new DataOutputStream (s.getOutputStream());
+			
+			while (!message.equals("exit")) {
+				message = dis.readUTF();
+				System.out.println("auiiiiii");
+				textPane.setText("\n Servidor: "+ message + i++);
+				}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -60,7 +83,7 @@ public class interfazCliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		textPane.setBounds(38, 237, 185, 43);
 		frame.getContentPane().add(textPane);
 		
@@ -70,7 +93,7 @@ public class interfazCliente {
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				try {
+				/*try {
 					
 					
 					JSONObject jsonEnviado = new JSONObject();
@@ -92,6 +115,16 @@ public class interfazCliente {
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
 				
 				
+			}*/
+				
+			try {
+				JSONObject jsonEnviado = new JSONObject();
+				jsonEnviado.put("presionado", "arriba");
+				String mess = jsonEnviado.toString();
+				dout.writeUTF(mess);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			}
 		});
@@ -101,6 +134,17 @@ public class interfazCliente {
 		frame.getContentPane().add(button);
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				try {
+					JSONObject jsonEnviado = new JSONObject();
+					jsonEnviado.put("presionado", "accion");
+					String mess = jsonEnviado.toString();
+					dout.writeUTF(mess);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				/*
+			
 				try {
 					
 					
@@ -123,7 +167,7 @@ public class interfazCliente {
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
 				
 				
-			}
+			}*/
 			}
 		});
 		
@@ -134,9 +178,15 @@ public class interfazCliente {
 		button_1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				try {
-					
-					
-					
+					JSONObject jsonEnviado = new JSONObject();
+					jsonEnviado.put("presionado", "derecha");
+					String mess = jsonEnviado.toString();
+					dout.writeUTF(mess);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				/*try {
 					String Texto = "PRESIONA FLECHA DERECHA";
 					String texto2 = textPane.getText().toString();
 					Socket cliente = new Socket("192.168.88.20",5000);
@@ -153,9 +203,8 @@ public class interfazCliente {
 				} catch (ClassNotFoundException ex) {
 				
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
-				
-				
-			}
+
+			}*/
 			}
 		});
 		
@@ -166,9 +215,16 @@ public class interfazCliente {
 		button_2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				try {
-					
-					
-					
+					JSONObject jsonEnviado = new JSONObject();
+					jsonEnviado.put("presionado", "izquierda");
+					String mess = jsonEnviado.toString();
+					dout.writeUTF(mess);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				/*try {
+				
 					String Texto = "PRESIONA FLECHA IZQUIERDA";
 					String texto2 = textPane.getText().toString();
 					Socket cliente = new Socket("192.168.88.20",5000);
@@ -187,7 +243,7 @@ public class interfazCliente {
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
 				
 				
-			}
+			}*/
 			}
 		});
 		
@@ -197,9 +253,16 @@ public class interfazCliente {
 		button_3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				try {
-					
-					
-					
+					JSONObject jsonEnviado = new JSONObject();
+					jsonEnviado.put("presionado", "abajo");
+					String mess = jsonEnviado.toString();
+					dout.writeUTF(mess);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				/*
+				try {
 					String Texto = "PRESIONA FLECHA ABAJO";
 					String texto2 = textPane.getText().toString();
 					Socket cliente = new Socket("192.168.88.20",5000);
@@ -216,9 +279,8 @@ public class interfazCliente {
 				} catch (ClassNotFoundException ex) {
 				
 					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
-				
-				
-			}
+
+			}*/
 			}
 		});
 		
