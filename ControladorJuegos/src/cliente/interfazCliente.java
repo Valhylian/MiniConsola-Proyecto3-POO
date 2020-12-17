@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
+import org.json.simple.JSONObject;  
 
 import java.net.Socket;
 import java.io.ObjectInputStream;
@@ -63,14 +64,15 @@ public class interfazCliente {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBounds(103, 27, 55, 52);
 		frame.getContentPane().add(btnNewButton);
+		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					
 					
-					
-					String Texto = "Flecha arriba presionada";
-					String texto2 = textPane.getText().toString();
+					JSONObject jsonEnviado = new JSONObject();
+					jsonEnviado.put("presionado", "arriba");
+					String Texto = jsonEnviado.toString();
 					Socket cliente = new Socket("192.168.88.20",5000);
 					ObjectOutputStream mensaje = new ObjectOutputStream(cliente.getOutputStream());
 					mensaje.writeObject(Texto);
