@@ -27,15 +27,16 @@ import cliente.interfazCliente;
 public class interfazServidor {
 
 	private JFrame frame;
-	private static JTextField recibidoServidor;
-	private JTextField enviarServidor;
+	public static JTextField recibidoServidor;
+	public JTextField enviarServidor;
 	
+	/*
 	static ServerSocket ss;
 	static Socket s;
 	static ServerSocket segundo;
 	static Socket pantalla;
 	static DataInputStream dis;
-	static DataOutputStream dout;
+	static DataOutputStream dout;*/
 
 	/**
 	 * Launch the application.
@@ -51,7 +52,9 @@ public class interfazServidor {
 				}
 			}
 		});
-		
+		Thread hilo1 = new Hilo("conexion 1");
+		hilo1.start();
+		/*
 		try {
 			String message = "";
 			ss = new ServerSocket (9000);
@@ -66,7 +69,7 @@ public class interfazServidor {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**
@@ -90,34 +93,12 @@ public class interfazServidor {
 		frame.getContentPane().add(iniciarServidor);
 		iniciarServidor.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				/*
-				try {
-			
-					String Texto2 = enviarServidor.getText().toString();
-					ServerSocket servidor = new ServerSocket(5000);
-					Socket clienteNuevo = servidor.accept();
-					ObjectInputStream entrada = new ObjectInputStream(clienteNuevo.getInputStream());
-					
-					String Mensaje = (String) entrada.readObject();
-					recibidoServidor.setText(Mensaje);
-					
-					ObjectOutputStream respuesta = new ObjectOutputStream(clienteNuevo.getOutputStream());
-					respuesta.writeObject(Texto2);
-					servidor.close();
-					clienteNuevo.close();
-					
-				} catch (IOException ex) {
-					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
-				} catch (ClassNotFoundException ex) {
 				
-					Logger.getLogger(interfazCliente.class.getName()).log(Level.SEVERE, null, ex);
-				
-				
-			}*/
+				//estoooo
 				
 				try {
 					String mess = enviarServidor.getText();
-					dout.writeUTF(mess);
+					Hilo.dout.writeUTF(mess);
 					enviarServidor.setText("");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
