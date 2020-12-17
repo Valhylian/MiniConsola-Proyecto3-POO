@@ -17,10 +17,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import java.net.*;
+
 import cliente.interfazCliente;
 
 
 public class interfazServidor {
+	
+	//prueba
+	static ServerSocket ss;
+	static Socket s;
+	
+	
 	private JFrame frame;
 	private JTextField recibidoServidor;
 	private JTextField enviarServidor;
@@ -62,8 +70,9 @@ public class interfazServidor {
 		frame.getContentPane().add(iniciarServidor);
 		iniciarServidor.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				
 				try {
-					String Texto = "Flecha arriba recibida";
+			
 					String Texto2 = enviarServidor.getText().toString();
 					ServerSocket servidor = new ServerSocket(5000);
 					Socket clienteNuevo = servidor.accept();

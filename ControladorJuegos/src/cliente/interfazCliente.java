@@ -2,13 +2,15 @@ package cliente;
 
 import java.awt.EventQueue;
 
+import java.net.*;
+import java.io.*;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
-import org.json.simple.JSONObject;  
+import org.json.simple.JSONObject;
 
-import java.net.Socket;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
@@ -51,6 +53,7 @@ public class interfazCliente {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 274, 351);
