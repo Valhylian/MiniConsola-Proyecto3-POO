@@ -7,8 +7,18 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import java.net.*;
+import java.io.*;
+
 
 public class PantallaGUI {
+	static int posicionX = 0;
+	static int posicionY = 0;
+	
+	static Socket pantalla;
+	static DataInputStream dis;
+	static DataOutputStream dout;
+	
 
 	private JFrame frame;
 
@@ -26,6 +36,7 @@ public class PantallaGUI {
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -44,10 +55,19 @@ public class PantallaGUI {
 		frame.getContentPane().setLayout(new GridLayout(50,50));
 		for (int i=0;i<50;i++) {
 			for (int j=0;j<50;j++) {
-				JButton btnNewButton = new JButton ();
-				btnNewButton.setBackground(new Color(0,0,0,0));
-				btnNewButton.setOpaque(false);
-				frame.getContentPane().add(btnNewButton); 
+				if (i==posicionX && j==posicionY) {
+					JButton btnNewButton = new JButton ();
+					btnNewButton.setBackground(Color.red);
+					btnNewButton.setOpaque(true);
+					frame.getContentPane().add(btnNewButton); 
+				}
+				else {
+					JButton btnNewButton = new JButton ();
+					btnNewButton.setBackground(Color.gray);
+					btnNewButton.setOpaque(true);
+					frame.getContentPane().add(btnNewButton); 
+				}
+				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

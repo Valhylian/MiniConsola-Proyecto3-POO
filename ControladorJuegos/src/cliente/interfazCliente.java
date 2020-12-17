@@ -50,7 +50,7 @@ public class interfazCliente {
 		try {
 
 			String message = "";
-			s = new Socket ("192.168.88.20",5000);
+			s = new Socket ("192.168.88.20",9000);
 			dis = new DataInputStream(s.getInputStream());
 			dout = new DataOutputStream (s.getOutputStream());
 			

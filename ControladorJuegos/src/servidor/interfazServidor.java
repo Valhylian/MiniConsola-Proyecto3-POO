@@ -32,6 +32,8 @@ public class interfazServidor {
 	
 	static ServerSocket ss;
 	static Socket s;
+	static ServerSocket segundo;
+	static Socket pantalla;
 	static DataInputStream dis;
 	static DataOutputStream dout;
 
@@ -52,7 +54,7 @@ public class interfazServidor {
 		
 		try {
 			String message = "";
-			ss = new ServerSocket (5000);
+			ss = new ServerSocket (9000);
 			s = ss.accept();
 			dis = new DataInputStream(s.getInputStream());
 			dout = new DataOutputStream (s.getOutputStream());
