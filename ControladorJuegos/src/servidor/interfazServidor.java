@@ -25,9 +25,9 @@ import cliente.Controlador;
 
 
 public class interfazServidor {
-	public static JButton matriz[][] = new JButton[50][50];
-	static int posicionX = 0;
-	static int posicionY = 0;
+	
+	static int posicionX = 24;
+	static int posicionY = 24;
 	private JFrame frame;
 	public static JTextField recibidoServidor;
 	public JTextField enviarServidor;

@@ -1,5 +1,6 @@
 package servidor;
 
+import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.json.simple.JSONObject;
+
 
 public class HiloConsolaPantalla extends Thread {
 
@@ -29,7 +31,7 @@ public class HiloConsolaPantalla extends Thread {
 			
 			while (!message.equals("exit")) {
 				message = dis.readUTF();
-				System.out.println("entraAqui");
+				
 				System.out.println(message);
 				message = dis.readUTF();
 				interfazServidor.recibidoServidor.setText(message);

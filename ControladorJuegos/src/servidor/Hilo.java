@@ -19,6 +19,7 @@ public class Hilo extends Thread {
 	static Socket s;
 	public static DataInputStream dis;
 	static DataOutputStream dout;
+	static int color = 0;
 	
 	
 	public Hilo (String name) {
@@ -57,8 +58,9 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 								
-								jsonEnviado.put("newColor", Color.red);
-								jsonEnviado.put("oldColor", Color.gray);
+								jsonEnviado.put("accion", color);
+								
+								
 								
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla.outPantalla.writeUTF(mess);
@@ -81,8 +83,7 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 								
-								jsonEnviado.put("newColor", Color.red);
-								jsonEnviado.put("oldColor", Color.gray);
+								jsonEnviado.put("accion", color);
 								
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla.outPantalla.writeUTF(mess);
@@ -90,6 +91,76 @@ public class Hilo extends Thread {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
+						}
+					}
+					else if (accionStr.equals("derecha")) {
+						if (interfazServidor.dentroMatriz(interfazServidor.posicionX, interfazServidor.posicionY + 1)) {
+							
+							try {
+								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("anterioX", interfazServidor.posicionX);
+								jsonEnviado.put("anterioY", interfazServidor.posicionY);
+								interfazServidor.posicionY++;
+								
+								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
+								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+						
+								jsonEnviado.put("accion", color);
+								String mess = jsonEnviado.toString();
+								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+					else if (accionStr.equals("izquierda")) {
+						if (interfazServidor.dentroMatriz(interfazServidor.posicionX, interfazServidor.posicionY -1)) {
+							
+							try {
+								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("anterioX", interfazServidor.posicionX);
+								jsonEnviado.put("anterioY", interfazServidor.posicionY);
+								interfazServidor.posicionY -- ;
+								
+								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
+								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+						
+								jsonEnviado.put("accion", color);
+								String mess = jsonEnviado.toString();
+								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+					
+					else if (accionStr.equals("accion")) {
+						try {
+							JSONObject jsonEnviado = new JSONObject();
+							jsonEnviado.put("anterioX", interfazServidor.posicionX);
+							jsonEnviado.put("anterioY", interfazServidor.posicionY);
+							
+							
+							jsonEnviado.put("nuevaX", interfazServidor.posicionX);
+							jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+							
+							if (color >= 15) {
+								color = 0;
+								jsonEnviado.put("accion", color);
+							}
+							else {
+								color ++;
+								jsonEnviado.put("accion", color);
+							}
+							
+							
+							String mess = jsonEnviado.toString();
+							HiloConsolaPantalla.outPantalla.writeUTF(mess);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
 					}
 					

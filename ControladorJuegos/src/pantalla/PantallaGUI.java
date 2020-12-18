@@ -10,16 +10,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import org.json.simple.JSONObject;
-
-import servidor.interfazServidor;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.net.*;
 import java.io.*;
 
 
 public class PantallaGUI {
-	
-	
+	int color = 0;
+	public static JButton matriz[][] = new JButton[50][50];
 	static Socket segundo;
 	static Socket pantalla;
 	static DataInputStream dis;
@@ -32,13 +32,66 @@ public class PantallaGUI {
 	public void cargarMatriz() {
 		for (int i=0; i<50; i++) {
 			for (int j=0; j<50; j++) {
-				JButton btnNewButton = new JButton ();
-				btnNewButton.setBackground(Color.red);
-				btnNewButton.setOpaque(true);
-				interfazServidor.matriz[i][j] =  btnNewButton;
-				frame.getContentPane().add(btnNewButton); 
+				if (i==24 && j==24) {
+					JButton btnNewButton = new JButton ();
+					btnNewButton.setBackground(Color.red);
+					btnNewButton.setOpaque(true);
+					matriz[i][j] =  btnNewButton;
+					btnNewButton.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent e) {
+							
+						try {
+							JSONObject jsonEnviado = new JSONObject();
+							jsonEnviado.put("prueba", "pantalla");
+							String mess = jsonEnviado.toString();
+							dout.writeUTF(mess);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						}
+					});
+					frame.getContentPane().add(btnNewButton); 
+				}
+				else {
+					JButton btnNewButton = new JButton ();
+					btnNewButton.setBackground(Color.gray);
+					btnNewButton.setOpaque(true);
+					matriz[i][j] =  btnNewButton;
+					frame.getContentPane().add(btnNewButton); 
+				}
+				
 			}
 		}
+	}
+	
+	public static void cambiosPantalla(int newX, int newY, int oldX, int oldY, int color) {
+		matriz[newX][newY].setBackground(Color.RED);
+		if (color == 0) 
+			matriz[oldX][oldY].setBackground(Color.orange);
+		
+		else if (color == 1) 
+			matriz[oldX][oldY].setBackground(Color.blue);
+		
+		else if (color == 2) 
+			matriz[oldX][oldY].setBackground(Color.pink);
+		
+		else if (color == 3) 
+			matriz[oldX][oldY].setBackground(Color.MAGENTA);
+		
+		else if (color == 4) 
+			matriz[oldX][oldY].setBackground(Color.white);
+		
+		else if (color == 5) 
+			matriz[oldX][oldY].setBackground(Color.yellow);
+		
+		else if (color == 6) 
+			matriz[oldX][oldY].setBackground(Color.CYAN);
+		
+		else if (color == 7) 
+			matriz[oldX][oldY].setBackground(Color.black);
+		
+		
 	}
 	/**
 	 * Launch the application.
@@ -64,6 +117,26 @@ public class PantallaGUI {
 			while (!message.equals("exit")) {
 				message = dis.readUTF();
 				System.out.println("entraAqui");
+				JSONParser parser = new JSONParser();
+				try {
+					JSONObject json = (JSONObject) parser.parse(message);
+					
+					int nuevaX = Integer.parseInt(json.get("nuevaX").toString());
+					int nuevaY = Integer.parseInt(json.get("nuevaY").toString());
+					
+					int anterioX = Integer.parseInt(json.get("anterioX").toString());
+					int anterioY = Integer.parseInt(json.get("anterioY").toString());
+					
+					int color = Integer.parseInt(json.get("accion").toString());
+
+					
+					cambiosPantalla(nuevaX, nuevaY, anterioX, anterioY, color);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 				System.out.println(message);
 				
 				}
