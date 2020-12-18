@@ -152,29 +152,29 @@ public class PantallaGUI {
 	}
 	
 	
-	public static void cambiosPantalla(int newX, int newY, int oldX, int oldY, int color) {
+	public static void cambiosPantalla(int newX, int newY, int oldX, int oldY, int colorNew, int colorOld) {
 		
 		matriz[newX][newY].setBackground(color1);
 		
-		if (color == 1) 
+		if (colorNew == 1) 
 			matriz[oldX][oldY].setBackground(color2);
 		
-		else if (color == 2) 
+		else if (colorNew == 2) 
 			matriz[oldX][oldY].setBackground(color3);
 		
-		else if (color == 3) 
+		else if (colorNew == 3) 
 			matriz[oldX][oldY].setBackground(color4);
 		
-		else if (color == 4) 
+		else if (colorNew == 4) 
 			matriz[oldX][oldY].setBackground(color5);
 		
-		else if (color == 5) 
+		else if (colorNew == 5) 
 			matriz[oldX][oldY].setBackground(color6);
 		
-		else if (color == 6) 
+		else if (colorNew == 6) 
 			matriz[oldX][oldY].setBackground(color7);
 		
-		else if (color == 7) 
+		else if (colorNew == 7) 
 			matriz[oldX][oldY].setBackground(color8);
 		
 		
@@ -227,9 +227,10 @@ public class PantallaGUI {
 						int anterioY = Integer.parseInt(json.get("anterioY").toString());
 						
 						int color = Integer.parseInt(json.get("accion").toString());
+						int colorNew = Integer.parseInt(json.get("color").toString());
 
 						
-						cambiosPantalla(nuevaX, nuevaY, anterioX, anterioY, color);
+						cambiosPantalla(nuevaX, nuevaY, anterioX, anterioY, color, colorNew);
 					}
 					
 					

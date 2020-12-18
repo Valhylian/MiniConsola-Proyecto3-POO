@@ -62,6 +62,7 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 								
 								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", 1);
 								
 								
 								
@@ -88,6 +89,7 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 								
 								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", 1);
 								
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla.outPantalla.writeUTF(mess);
@@ -111,6 +113,7 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 						
 								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", 1);
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
@@ -133,6 +136,7 @@ public class Hilo extends Thread {
 								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 						
 								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", 1);
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
@@ -153,6 +157,7 @@ public class Hilo extends Thread {
 							jsonEnviado.put("nuevaX", interfazServidor.posicionX);
 							jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 							
+							jsonEnviado.put("color", 1);
 							
 							
 							if (color >= 7) {
