@@ -25,7 +25,9 @@ import cliente.Controlador;
 
 
 public class interfazServidor {
-
+	public static JButton matriz[][] = new JButton[50][50];
+	static int posicionX = 0;
+	static int posicionY = 0;
 	private JFrame frame;
 	public static JTextField recibidoServidor;
 	public JTextField enviarServidor;
@@ -41,6 +43,13 @@ public class interfazServidor {
 	/**
 	 * Launch the application.
 	 */
+	
+	public static boolean dentroMatriz(int x, int y) {
+		if (x>=0 && x<50 && y>=0 && y<50) {
+			return true;
+		}
+		return false;
+	}
 	public static void init() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

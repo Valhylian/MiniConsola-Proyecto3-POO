@@ -13,7 +13,7 @@ public class HiloConsolaPantalla extends Thread {
 	static ServerSocket segundo;
 	static Socket pantalla;
 	static DataInputStream dis;
-	static DataOutputStream dout;
+	static DataOutputStream outPantalla;
 	
 	public HiloConsolaPantalla (String name) {
 		super(name);
@@ -25,10 +25,12 @@ public class HiloConsolaPantalla extends Thread {
 			segundo = new ServerSocket (5000);
 			pantalla = segundo.accept();
 			dis = new DataInputStream(pantalla.getInputStream());
-			dout = new DataOutputStream (pantalla.getOutputStream());
+			outPantalla = new DataOutputStream (pantalla.getOutputStream());
 			
 			while (!message.equals("exit")) {
-				System.out.println("entra");
+				message = dis.readUTF();
+				System.out.println("entraAqui");
+				System.out.println(message);
 				message = dis.readUTF();
 				interfazServidor.recibidoServidor.setText(message);
 				}

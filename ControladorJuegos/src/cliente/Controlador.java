@@ -26,6 +26,7 @@ public class Controlador {
 	static Socket s;
 	static DataInputStream dis;
 	static DataOutputStream dout;
+	static DataOutputStream outPantalla;
 	static int i = 0;
 	
 

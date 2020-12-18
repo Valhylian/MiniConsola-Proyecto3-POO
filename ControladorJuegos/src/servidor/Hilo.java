@@ -1,5 +1,6 @@
 package servidor;
 
+import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class Hilo extends Thread {
 	static Socket s;
 	public static DataInputStream dis;
 	static DataOutputStream dout;
+	
 	
 	public Hilo (String name) {
 		super(name);
@@ -43,10 +45,54 @@ public class Hilo extends Thread {
 					Object accion = json.get("presionado");
 					String accionStr = accion.toString();
 					
-					if (accionStr == "arriba") {
-						//esta dentro de la matriz?
-						//mande el mensaje
+					if (accionStr.equals("arriba")) {
+						if (interfazServidor.dentroMatriz(interfazServidor.posicionX -1, interfazServidor.posicionY)) {
+							
+							try {
+								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("anterioX", interfazServidor.posicionX);
+								jsonEnviado.put("anterioY", interfazServidor.posicionY);
+								interfazServidor.posicionX--;
+								
+								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
+								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								
+								jsonEnviado.put("newColor", Color.red);
+								jsonEnviado.put("oldColor", Color.gray);
+								
+								String mess = jsonEnviado.toString();
+								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
 					}
+					
+					else if (accionStr.equals("abajo")) {
+						if (interfazServidor.dentroMatriz(interfazServidor.posicionX +1, interfazServidor.posicionY)) {
+							
+							try {
+								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("anterioX", interfazServidor.posicionX);
+								jsonEnviado.put("anterioY", interfazServidor.posicionY);
+								interfazServidor.posicionX++;
+								
+								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
+								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								
+								jsonEnviado.put("newColor", Color.red);
+								jsonEnviado.put("oldColor", Color.gray);
+								
+								String mess = jsonEnviado.toString();
+								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+					
 					System.out.println(accion);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block

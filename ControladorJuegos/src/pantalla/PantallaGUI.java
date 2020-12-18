@@ -11,13 +11,14 @@ import javax.swing.JFrame;
 
 import org.json.simple.JSONObject;
 
+import servidor.interfazServidor;
+
 import java.net.*;
 import java.io.*;
 
 
 public class PantallaGUI {
-	static int posicionX = 0;
-	static int posicionY = 0;
+	
 	
 	static Socket segundo;
 	static Socket pantalla;
@@ -26,7 +27,19 @@ public class PantallaGUI {
 	
 
 	private JFrame frame;
-
+	
+	
+	public void cargarMatriz() {
+		for (int i=0; i<50; i++) {
+			for (int j=0; j<50; j++) {
+				JButton btnNewButton = new JButton ();
+				btnNewButton.setBackground(Color.red);
+				btnNewButton.setOpaque(true);
+				interfazServidor.matriz[i][j] =  btnNewButton;
+				frame.getContentPane().add(btnNewButton); 
+			}
+		}
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +63,8 @@ public class PantallaGUI {
 			
 			while (!message.equals("exit")) {
 				message = dis.readUTF();
-				System.out.println("auiiiiii");
+				System.out.println("entraAqui");
+				System.out.println(message);
 				
 				}
 		} catch (IOException e) {
@@ -74,9 +88,10 @@ public class PantallaGUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 701, 700);
 		frame.getContentPane().setLayout(new GridLayout(50,50));
+		/*
 		for (int i=0;i<50;i++) {
 			for (int j=0;j<50;j++) {
-				if (i==posicionX && j==posicionY) {
+				if (i==0 && j==0) {
 					JButton btnNewButton = new JButton ();
 					btnNewButton.setBackground(Color.red);
 					btnNewButton.setOpaque(true);
@@ -102,9 +117,13 @@ public class PantallaGUI {
 					btnNewButton.setOpaque(true);
 					frame.getContentPane().add(btnNewButton); 
 				}
-				
+			}
+		}*/
+		cargarMatriz();
+	
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+	
 
-}}}
+}}
 	
