@@ -14,6 +14,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import servidor.interfazServidor;
+
 import java.net.*;
 import java.io.*;
 import java.lang.reflect.Array;
@@ -32,6 +34,9 @@ public class PantallaGUI {
 	static Color color3;
 	static Color color4;
 	static Color color5;
+	static Color color6;
+	static Color color7;
+	static Color color8;
 
 	
 
@@ -92,13 +97,13 @@ public class PantallaGUI {
 					matriz[i][j].setBackground(color2);
 				}
 				if (matrizLogica[i][j] == 1) {
-					matriz[i][j].setBackground(color3);
+					matriz[i][j].setBackground(color1);
 				}
 				
 				
 			}
 		}
-		matriz[24][24].setBackground(color1);
+		matriz[interfazServidor.posicionX][interfazServidor.posicionY].setBackground(color1);
 	}
 	
 	//RETORNA EL COLOR
@@ -113,6 +118,10 @@ public class PantallaGUI {
 			return Color.yellow;
 		if (color.equals("pink")) 
 			return Color.pink;
+		if (color.equals("gray")) 
+			return Color.gray;
+		if (color.equals("MAGENTA")) 
+			return Color.MAGENTA;
 		return Color.BLACK;
 		
 	}
@@ -128,6 +137,9 @@ public class PantallaGUI {
 			color3 = selectColor (json.get("color3").toString());
 			color4 = selectColor (json.get("color4").toString());
 			color5 = selectColor (json.get("color5").toString());
+			color6 = selectColor (json.get("color6").toString());
+			color7 = selectColor (json.get("color7").toString());
+			color8 = selectColor (json.get("color8").toString());
 			
 			JSONArray matrizJson = (JSONArray)json.get("matrizLogica");
 			matrizLogica = retornaMatriz(matrizJson);
@@ -144,17 +156,28 @@ public class PantallaGUI {
 		
 		matriz[newX][newY].setBackground(color1);
 		
-		if (color == 0) 
+		if (color == 1) 
 			matriz[oldX][oldY].setBackground(color2);
 		
-		else if (color == 1) 
+		else if (color == 2) 
 			matriz[oldX][oldY].setBackground(color3);
 		
-		else if (color == 2) 
+		else if (color == 3) 
 			matriz[oldX][oldY].setBackground(color4);
 		
-		else if (color == 3) 
+		else if (color == 4) 
 			matriz[oldX][oldY].setBackground(color5);
+		
+		else if (color == 5) 
+			matriz[oldX][oldY].setBackground(color6);
+		
+		else if (color == 6) 
+			matriz[oldX][oldY].setBackground(color7);
+		
+		else if (color == 7) 
+			matriz[oldX][oldY].setBackground(color8);
+		
+		
 		
 	
 

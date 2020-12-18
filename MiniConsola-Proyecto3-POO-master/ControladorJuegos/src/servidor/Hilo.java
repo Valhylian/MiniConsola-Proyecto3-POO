@@ -20,7 +20,7 @@ public class Hilo extends Thread {
 	static Socket s;
 	public static DataInputStream dis;
 	static DataOutputStream dout;
-	static int color = 0;
+	static int color = 1;
 	
 	
 	public Hilo (String name) {
@@ -155,8 +155,8 @@ public class Hilo extends Thread {
 							
 							
 							
-							if (color >= 3) {
-								color = 0;
+							if (color >= 7) {
+								color = 1;
 								jsonEnviado.put("accion", color);
 							}
 							else {

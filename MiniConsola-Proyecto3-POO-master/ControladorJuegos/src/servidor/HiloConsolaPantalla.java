@@ -24,14 +24,7 @@ public class HiloConsolaPantalla extends Thread {
 	public static void llenarMatriz() {
 		for (int i=0; i<50; i++) {
 			for (int j=0; j<50; j++) {
-				if (i==0) {
-				
-					matriz[i][j] =  1;
-					
-				}
-				else {
-					matriz[i][j] =  0;
-				}
+				matriz[i][j] =  0;
 			}
 		}
 	}
@@ -70,10 +63,13 @@ public class HiloConsolaPantalla extends Thread {
 			//prueba.
 			jsonEnviado.put("messageNum", "0");
 			jsonEnviado.put("color1", "red");
-			jsonEnviado.put("color2", "blue");
+			jsonEnviado.put("color2", "gray");
 			jsonEnviado.put("color3", "green");
 			jsonEnviado.put("color4", "yellow");
 			jsonEnviado.put("color5", "pink");
+			jsonEnviado.put("color6", "blue");
+			jsonEnviado.put("color7", "MAGENTA");
+			jsonEnviado.put("color8", "white");
 			llenarMatriz();
 			jsonEnviado.put("matrizLogica", matriz_Json ()); //envio la matriz inicial
 			String mensajeJson = jsonEnviado.toString();
