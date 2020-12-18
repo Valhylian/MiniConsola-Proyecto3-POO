@@ -11,43 +11,25 @@ public class ThreadPress extends Thread{
 	}
 	
 	public void run() {
-		int i= 0;
-		while (Controlador.pressArriba || Controlador.pressAbajo || Controlador.pressDerecha) {
-			System.out.println(i);
-			i ++; 
+		
+		while (Controlador.pressArriba || Controlador.pressAbajo || Controlador.pressDerecha || Controlador.pressIzquierda || Controlador.pressAccion) {
+			
 			if (Controlador.pressArriba) {
-				try {
-					JSONObject jsonEnviado = new JSONObject();
-					jsonEnviado.put("presionado", "arriba");
-					String mess = jsonEnviado.toString();
-					Controlador.dout.writeUTF(mess);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Controlador.enviarFormatoJSON("arriba");
 			}
 			if (Controlador.pressAbajo) {
-				try {
-					JSONObject jsonEnviado = new JSONObject();
-					jsonEnviado.put("presionado", "arriba");
-					String mess = jsonEnviado.toString();
-					Controlador.dout.writeUTF(mess);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Controlador.enviarFormatoJSON("abajo");
 			}
 			if (Controlador.pressDerecha) {
-				try {
-					JSONObject jsonEnviado = new JSONObject();
-					jsonEnviado.put("presionado", "derecha");
-					String mess = jsonEnviado.toString();
-					Controlador.dout.writeUTF(mess);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Controlador.enviarFormatoJSON("derecha");
 			}
+			if (Controlador.pressIzquierda) {
+				Controlador.enviarFormatoJSON("izquierda");
+			}
+			if (Controlador.pressAccion) {
+				Controlador.enviarFormatoJSON("accion");
+			}
+			
 			
 			try {
 				Thread.sleep(100);

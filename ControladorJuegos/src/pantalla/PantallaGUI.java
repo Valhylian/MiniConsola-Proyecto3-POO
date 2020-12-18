@@ -100,8 +100,9 @@ public class PantallaGUI {
 		else if (color == 10) 
 			matriz[oldX][oldY].setBackground(Color.red);
 		
-		
-		
+		else if (color == 11) 
+			matriz[oldX][oldY].setBackground(Color.gray);
+
 	}
 	/**
 	 * Launch the application.
