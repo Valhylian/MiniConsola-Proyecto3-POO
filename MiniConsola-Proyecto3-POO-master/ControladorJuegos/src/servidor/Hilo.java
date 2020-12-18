@@ -9,6 +9,7 @@ import java.net.Socket;
 
 import javax.swing.JTextField;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -34,6 +35,7 @@ public class Hilo extends Thread {
 			dis = new DataInputStream(s.getInputStream());
 			dout = new DataOutputStream (s.getOutputStream());
 			
+			
 			while (!message.equals("exit")) {
 				System.out.println("entra");
 				message = dis.readUTF();
@@ -51,6 +53,7 @@ public class Hilo extends Thread {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("messageNum", "1");
 								jsonEnviado.put("anterioX", interfazServidor.posicionX);
 								jsonEnviado.put("anterioY", interfazServidor.posicionY);
 								interfazServidor.posicionX--;
@@ -76,6 +79,7 @@ public class Hilo extends Thread {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("messageNum", "1");
 								jsonEnviado.put("anterioX", interfazServidor.posicionX);
 								jsonEnviado.put("anterioY", interfazServidor.posicionY);
 								interfazServidor.posicionX++;
@@ -98,6 +102,7 @@ public class Hilo extends Thread {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("messageNum", "1");
 								jsonEnviado.put("anterioX", interfazServidor.posicionX);
 								jsonEnviado.put("anterioY", interfazServidor.posicionY);
 								interfazServidor.posicionY++;
@@ -119,6 +124,7 @@ public class Hilo extends Thread {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
+								jsonEnviado.put("messageNum", "1");
 								jsonEnviado.put("anterioX", interfazServidor.posicionX);
 								jsonEnviado.put("anterioY", interfazServidor.posicionY);
 								interfazServidor.posicionY -- ;
@@ -139,6 +145,7 @@ public class Hilo extends Thread {
 					else if (accionStr.equals("accion")) {
 						try {
 							JSONObject jsonEnviado = new JSONObject();
+							jsonEnviado.put("messageNum", "1");
 							jsonEnviado.put("anterioX", interfazServidor.posicionX);
 							jsonEnviado.put("anterioY", interfazServidor.posicionY);
 							
@@ -146,7 +153,9 @@ public class Hilo extends Thread {
 							jsonEnviado.put("nuevaX", interfazServidor.posicionX);
 							jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 							
-							if (color >= 11) {
+							
+							
+							if (color >= 3) {
 								color = 0;
 								jsonEnviado.put("accion", color);
 							}
