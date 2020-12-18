@@ -171,6 +171,8 @@ public class PantallaGUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 701, 700);
 		frame.getContentPane().setLayout(new GridLayout(50,50));
+		
+		
 		/*
 		for (int i=0;i<50;i++) {
 			for (int j=0;j<50;j++) {
