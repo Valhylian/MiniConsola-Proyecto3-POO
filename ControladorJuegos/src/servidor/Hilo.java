@@ -146,7 +146,7 @@ public class Hilo extends Thread {
 							jsonEnviado.put("nuevaX", interfazServidor.posicionX);
 							jsonEnviado.put("nuevaY", interfazServidor.posicionY);
 							
-							if (color >= 15) {
+							if (color >= 10) {
 								color = 0;
 								jsonEnviado.put("accion", color);
 							}

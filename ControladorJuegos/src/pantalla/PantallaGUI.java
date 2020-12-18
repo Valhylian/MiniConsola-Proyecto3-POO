@@ -91,6 +91,16 @@ public class PantallaGUI {
 		else if (color == 7) 
 			matriz[oldX][oldY].setBackground(Color.black);
 		
+		else if (color == 8) 
+			matriz[oldX][oldY].setBackground(Color.DARK_GRAY);
+		
+		else if (color == 9) 
+			matriz[oldX][oldY].setBackground(Color.LIGHT_GRAY);
+		
+		else if (color == 10) 
+			matriz[oldX][oldY].setBackground(Color.red);
+		
+		
 		
 	}
 	/**
