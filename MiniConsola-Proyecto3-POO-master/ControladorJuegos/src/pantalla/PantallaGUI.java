@@ -35,10 +35,10 @@ public class PantallaGUI {
 
 	
 
-	private JFrame frame;
+	private static JFrame frame = new JFrame();
 	
 	
-	public void cargarMatriz() {
+	public static void cargarMatriz() {
 		for (int i=0; i<50; i++) {
 			for (int j=0; j<50; j++) {
 				if (i==24 && j==24) {
@@ -59,12 +59,13 @@ public class PantallaGUI {
 		}
 	}
 	public static int[][] retornaMatriz (JSONArray json){
+		
 		int newMatriz[][] = new int[50][50];
 		for (int i=0; i<50; i++) {
 			JSONArray array = (JSONArray) json.get(i);
 			for (int j=0; j<50; j++) {
 				JSONObject valor = (JSONObject) array.get(j);
-				int numero = (Integer) valor.get("valor");
+				int numero = Integer.parseInt(valor.get("valor").toString());
 				newMatriz[i][j] = numero;
 			}
 		}
@@ -80,8 +81,24 @@ public class PantallaGUI {
 			System.out.println();
 	}}
 	
-	public void cargarMatrizLogica(int matrix[][]) {
-		
+	public static void cargarMatrizLogica() {
+	
+		//cargarMatriz();
+		for (int i=0; i<50; i++) {
+			for (int j=0; j<50; j++) {
+				System.out.println("i"+i);
+				System.out.println("j"+j);
+				if (matrizLogica[i][j] == 0) {
+					matriz[i][j].setBackground(color2);
+				}
+				if (matrizLogica[i][j] == 1) {
+					matriz[i][j].setBackground(color3);
+				}
+				
+				
+			}
+		}
+		matriz[24][24].setBackground(color1);
 	}
 	
 	//RETORNA EL COLOR
@@ -111,6 +128,11 @@ public class PantallaGUI {
 			color3 = selectColor (json.get("color3").toString());
 			color4 = selectColor (json.get("color4").toString());
 			color5 = selectColor (json.get("color5").toString());
+			
+			JSONArray matrizJson = (JSONArray)json.get("matrizLogica");
+			matrizLogica = retornaMatriz(matrizJson);
+			imprimeMatriz (matrizLogica);
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,6 +179,7 @@ public class PantallaGUI {
 			dout = new DataOutputStream (pantalla.getOutputStream());
 			
 			while (!message.equals("exit")) {
+				
 				message = dis.readUTF();
 				System.out.println("entraAqui");
 				System.out.println(message);
@@ -168,9 +191,12 @@ public class PantallaGUI {
 						asignarColores(message);
 						System.out.println(color1);
 						System.out.println(color2);
+						cargarMatrizLogica();
 						
 					}
-					else {
+					
+					if (json.get("messageNum").toString().equals("1")) {
+						//cargarMatrizLogica();
 						int nuevaX = Integer.parseInt(json.get("nuevaX").toString());
 						int nuevaY = Integer.parseInt(json.get("nuevaY").toString());
 						
@@ -182,6 +208,8 @@ public class PantallaGUI {
 						
 						cambiosPantalla(nuevaX, nuevaY, anterioX, anterioY, color);
 					}
+					
+					
 					
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -206,7 +234,7 @@ public class PantallaGUI {
 
 	
 	private void initialize() {
-		frame = new JFrame();
+		
 		frame.setBounds(100, 100, 701, 700);
 		frame.getContentPane().setLayout(new GridLayout(50,50));
 

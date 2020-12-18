@@ -74,6 +74,7 @@ public class HiloConsolaPantalla extends Thread {
 			jsonEnviado.put("color3", "green");
 			jsonEnviado.put("color4", "yellow");
 			jsonEnviado.put("color5", "pink");
+			llenarMatriz();
 			jsonEnviado.put("matrizLogica", matriz_Json ()); //envio la matriz inicial
 			String mensajeJson = jsonEnviado.toString();
 			HiloConsolaPantalla.outPantalla.writeUTF(mensajeJson);
