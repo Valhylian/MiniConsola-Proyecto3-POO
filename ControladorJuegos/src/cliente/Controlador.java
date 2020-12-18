@@ -21,7 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
-public class interfazCliente {
+public class Controlador {
 	private static JTextPane textPane; 
 	static Socket s;
 	static DataInputStream dis;
@@ -38,7 +38,7 @@ public class interfazCliente {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					interfazCliente window = new interfazCliente();
+					Controlador window = new Controlador();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +68,7 @@ public class interfazCliente {
 	/**
 	 * Create the application.
 	 */
-	public interfazCliente() {
+	public Controlador() {
 		initialize();
 	}
 

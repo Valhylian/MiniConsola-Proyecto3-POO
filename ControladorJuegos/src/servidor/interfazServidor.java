@@ -21,7 +21,7 @@ import javax.swing.JTextPane;
 
 import java.net.*;
 
-import cliente.interfazCliente;
+import cliente.Controlador;
 
 
 public class interfazServidor {
@@ -54,6 +54,8 @@ public class interfazServidor {
 		});
 		Thread hilo1 = new Hilo("conexion 1");
 		hilo1.start();
+		Thread hilo2 = new HiloConsolaPantalla ("conexion 2");
+		hilo2.start();
 		/*
 		try {
 			String message = "";
@@ -93,9 +95,7 @@ public class interfazServidor {
 		frame.getContentPane().add(iniciarServidor);
 		iniciarServidor.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
-				//estoooo
-				
+
 				try {
 					String mess = enviarServidor.getText();
 					Hilo.dout.writeUTF(mess);

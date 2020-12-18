@@ -8,12 +8,15 @@ import java.net.Socket;
 
 import javax.swing.JTextField;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class Hilo extends Thread {
+	public static String informacion;
 	static ServerSocket ss;
 	static Socket s;
-	static ServerSocket segundo;
-	static Socket pantalla;
-	static DataInputStream dis;
+	public static DataInputStream dis;
 	static DataOutputStream dout;
 	
 	public Hilo (String name) {
@@ -29,8 +32,26 @@ public class Hilo extends Thread {
 			dout = new DataOutputStream (s.getOutputStream());
 			
 			while (!message.equals("exit")) {
+				System.out.println("entra");
 				message = dis.readUTF();
+				informacion = message;
 				interfazServidor.recibidoServidor.setText(message);
+				
+				JSONParser parser = new JSONParser();
+				try {
+					JSONObject json = (JSONObject) parser.parse(message);
+					Object accion = json.get("presionado");
+					String accionStr = accion.toString();
+					
+					if (accionStr == "arriba") {
+						//esta dentro de la matriz?
+						//mande el mensaje
+					}
+					System.out.println(accion);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
