@@ -29,24 +29,73 @@ public class HiloConsolaPantalla2 extends Thread {
 						matriz[i][j] =  0;
 					}
 				}
-				else if (j == 5) {
+				else if (j == 7) {
 					matriz[i][j] =  1;
 					if (i ==24) {
 						matriz[i][j] =  0;
 					}
 				}
-				else if (j == 7) {
+				else if (j == 11) {
 					matriz[i][j] =  1;
 					if (i ==1) {
 						matriz[i][j] =  0;
 					}
 				}
-				else if (j == 9) {
+				else if (j == 15) {
 					matriz[i][j] =  1;
 					if (i ==32) {
 						matriz[i][j] =  0;
 					}
 				}
+				else if (j == 19) {
+					matriz[i][j] =  1;
+					if (i ==10) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 23) {
+					matriz[i][j] =  1;
+					if (i ==40) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 27) {
+					matriz[i][j] =  1;
+					if (i ==20) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 31) {
+					matriz[i][j] =  1;
+					if (i ==0) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 35) {
+					matriz[i][j] =  1;
+					if (i ==32) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 39) {
+					matriz[i][j] =  1;
+					if (i ==45) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 43) {
+					matriz[i][j] =  1;
+					if (i ==17) {
+						matriz[i][j] =  0;
+					}
+				}
+				else if (j == 47) {
+					matriz[i][j] =  1;
+					if (i ==20) {
+						matriz[i][j] =  0;
+					}
+				}
+			
 				else{
 					matriz[i][j] =  0;
 				}

@@ -22,14 +22,38 @@ public class IntefazServidor2 {
 		if (y==3 & x!=49) {
 			return false;
 		}
-		if (y==5 & x!=24) {
+		if (y==7 & x!=24) {
 			return false;
 		}
 		
-		if (y==7 & x!=1) {
+		if (y==11 & x!=1) {
 			return false;
 		}
-		if (y==9 & x!=32) {
+		if (y==15 & x!=32) {
+			return false;
+		}
+		if (y==19 & x!=10) {
+			return false;
+		}
+		if (y==23 & x!=40) {
+			return false;
+		}
+		if (y==27 & x!=20) {
+			return false;
+		}
+		if (y==31 & x!=0) {
+			return false;
+		}
+		if (y==35 & x!=32) {
+			return false;
+		}
+		if (y==39 & x!=45) {
+			return false;
+		}
+		if (y==43 & x!=17) {
+			return false;
+		}
+		if (y==47 & x!=20) {
 			return false;
 		}
 		if (x>=0 && x<50 && y>=0 && y<50) {
