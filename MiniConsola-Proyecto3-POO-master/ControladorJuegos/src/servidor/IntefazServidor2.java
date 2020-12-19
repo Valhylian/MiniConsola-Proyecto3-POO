@@ -3,48 +3,35 @@ package servidor;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
-import java.net.*;
-
-import cliente.Controlador;
-
-
-public class interfazServidor {
-	
-	public static int posicionX = 24;
-	public static int posicionY = 24;
+public class IntefazServidor2 {
+	public static int posicionX = 0;
+	public static int posicionY = 0;
 	private JFrame frame;
 	public static JTextField recibidoServidor;
 	public JTextField enviarServidor;
 	
-	/*
-	static ServerSocket ss;
-	static Socket s;
-	static ServerSocket segundo;
-	static Socket pantalla;
-	static DataInputStream dis;
-	static DataOutputStream dout;*/
-
-	/**
-	 * Launch the application.
-	 */
 	
 	public static boolean dentroMatriz(int x, int y) {
+		if (y==3 & x!=49) {
+			return false;
+		}
+		if (y==5 & x!=24) {
+			return false;
+		}
+		
+		if (y==7 & x!=1) {
+			return false;
+		}
+		if (y==9 & x!=32) {
+			return false;
+		}
 		if (x>=0 && x<50 && y>=0 && y<50) {
 			return true;
 		}
@@ -54,39 +41,21 @@ public class interfazServidor {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					interfazServidor window = new interfazServidor();
+					IntefazServidor2 window = new IntefazServidor2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		Thread hilo1 = new Hilo("conexion 1");
+		
+		Thread hilo1 = new HiloConsola2("conexion 1");
 		hilo1.start();
-		Thread hilo2 = new HiloConsolaPantalla ("conexion 2");
+		Thread hilo2 = new HiloConsolaPantalla2 ("conexion 2");
 		hilo2.start();
-		/*
-		try {
-			String message = "";
-			ss = new ServerSocket (9000);
-			s = ss.accept();
-			dis = new DataInputStream(s.getInputStream());
-			dout = new DataOutputStream (s.getOutputStream());
-			
-			while (!message.equals("exit")) {
-				message = dis.readUTF();
-				recibidoServidor.setText(message);
-				}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public interfazServidor () {
+	public IntefazServidor2 () {
 		initialize();
 	}
 
@@ -138,3 +107,4 @@ public class interfazServidor {
 
 
 }
+

@@ -97,7 +97,7 @@ public class PantallaGUI {
 					matriz[i][j].setBackground(color2);
 				}
 				if (matrizLogica[i][j] == 1) {
-					matriz[i][j].setBackground(color1);
+					matriz[i][j].setBackground(Color.BLACK);
 				}
 				
 				
@@ -122,6 +122,8 @@ public class PantallaGUI {
 			return Color.gray;
 		if (color.equals("MAGENTA")) 
 			return Color.MAGENTA;
+		if (color.equals("WHITE")) 
+			return Color.WHITE;
 		return Color.BLACK;
 		
 	}

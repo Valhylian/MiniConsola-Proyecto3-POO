@@ -1,20 +1,16 @@
 package servidor;
 
-import java.awt.Color;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.swing.JTextField;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Hilo extends Thread {
+public class HiloConsola2 extends Thread {
 	public static String informacion;
 	static ServerSocket ss;
 	static Socket s;
@@ -23,7 +19,7 @@ public class Hilo extends Thread {
 	static int color = 1;
 	
 	
-	public Hilo (String name) {
+	public HiloConsola2 (String name) {
 		super(name);
 	}
 
@@ -41,7 +37,7 @@ public class Hilo extends Thread {
 				System.out.println("entra");
 				message = dis.readUTF();
 				informacion = message;
-				interfazServidor.recibidoServidor.setText(message);
+				IntefazServidor2.recibidoServidor.setText(message);
 				
 				JSONParser parser = new JSONParser();
 				try {
@@ -50,17 +46,17 @@ public class Hilo extends Thread {
 					String accionStr = accion.toString();
 					
 					if (accionStr.equals("arriba")) {
-						if (interfazServidor.dentroMatriz(interfazServidor.posicionX -1, interfazServidor.posicionY)) {
+						if (IntefazServidor2.dentroMatriz(IntefazServidor2.posicionX -1, IntefazServidor2.posicionY)) {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
 								jsonEnviado.put("messageNum", "1");
-								jsonEnviado.put("anterioX", interfazServidor.posicionX);
-								jsonEnviado.put("anterioY", interfazServidor.posicionY);
-								interfazServidor.posicionX--;
+								jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
+								jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
+								IntefazServidor2.posicionX--;
 								
-								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
-								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
+								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 								
 								jsonEnviado.put("accion", color);
 								jsonEnviado.put("color", 1);
@@ -68,7 +64,7 @@ public class Hilo extends Thread {
 								
 								
 								String mess = jsonEnviado.toString();
-								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -77,23 +73,23 @@ public class Hilo extends Thread {
 					}
 					
 					else if (accionStr.equals("abajo")) {
-						if (interfazServidor.dentroMatriz(interfazServidor.posicionX +1, interfazServidor.posicionY)) {
+						if (IntefazServidor2.dentroMatriz(IntefazServidor2.posicionX +1, IntefazServidor2.posicionY)) {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
 								jsonEnviado.put("messageNum", "1");
-								jsonEnviado.put("anterioX", interfazServidor.posicionX);
-								jsonEnviado.put("anterioY", interfazServidor.posicionY);
-								interfazServidor.posicionX++;
+								jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
+								jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
+								IntefazServidor2.posicionX++;
 								
-								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
-								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
+								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 								
 								jsonEnviado.put("accion", color);
 								jsonEnviado.put("color", 1);
 								
 								String mess = jsonEnviado.toString();
-								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -101,22 +97,22 @@ public class Hilo extends Thread {
 						}
 					}
 					else if (accionStr.equals("derecha")) {
-						if (interfazServidor.dentroMatriz(interfazServidor.posicionX, interfazServidor.posicionY + 1)) {
+						if (IntefazServidor2.dentroMatriz(IntefazServidor2.posicionX, IntefazServidor2.posicionY + 1)) {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
 								jsonEnviado.put("messageNum", "1");
-								jsonEnviado.put("anterioX", interfazServidor.posicionX);
-								jsonEnviado.put("anterioY", interfazServidor.posicionY);
-								interfazServidor.posicionY++;
+								jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
+								jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
+								IntefazServidor2.posicionY++;
 								
-								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
-								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
+								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 						
 								jsonEnviado.put("accion", color);
 								jsonEnviado.put("color", 1);
 								String mess = jsonEnviado.toString();
-								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -124,22 +120,22 @@ public class Hilo extends Thread {
 						}
 					}
 					else if (accionStr.equals("izquierda")) {
-						if (interfazServidor.dentroMatriz(interfazServidor.posicionX, interfazServidor.posicionY -1)) {
+						if (IntefazServidor2.dentroMatriz(IntefazServidor2.posicionX, IntefazServidor2.posicionY -1)) {
 							
 							try {
 								JSONObject jsonEnviado = new JSONObject();
 								jsonEnviado.put("messageNum", "1");
-								jsonEnviado.put("anterioX", interfazServidor.posicionX);
-								jsonEnviado.put("anterioY", interfazServidor.posicionY);
-								interfazServidor.posicionY -- ;
+								jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
+								jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
+								IntefazServidor2.posicionY -- ;
 								
-								jsonEnviado.put("nuevaX", interfazServidor.posicionX);
-								jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
+								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 						
 								jsonEnviado.put("accion", color);
 								jsonEnviado.put("color", 1);
 								String mess = jsonEnviado.toString();
-								HiloConsolaPantalla.outPantalla.writeUTF(mess);
+								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -151,12 +147,12 @@ public class Hilo extends Thread {
 						try {
 							JSONObject jsonEnviado = new JSONObject();
 							jsonEnviado.put("messageNum", "1");
-							jsonEnviado.put("anterioX", interfazServidor.posicionX);
-							jsonEnviado.put("anterioY", interfazServidor.posicionY);
+							jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
+							jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
 							
 							
-							jsonEnviado.put("nuevaX", interfazServidor.posicionX);
-							jsonEnviado.put("nuevaY", interfazServidor.posicionY);
+							jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
+							jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 							
 							jsonEnviado.put("color", 1);
 							
@@ -172,7 +168,7 @@ public class Hilo extends Thread {
 							
 							
 							String mess = jsonEnviado.toString();
-							HiloConsolaPantalla.outPantalla.writeUTF(mess);
+							HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -191,3 +187,4 @@ public class Hilo extends Thread {
 		}
 	}
 }
+
