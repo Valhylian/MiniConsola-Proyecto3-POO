@@ -58,8 +58,8 @@ public class HiloConsola2 extends Thread {
 								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
 								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 								
-								jsonEnviado.put("accion", color);
-								jsonEnviado.put("color", 1);
+								jsonEnviado.put("accion", 1);
+								jsonEnviado.put("color", color);
 								
 								
 								
@@ -85,8 +85,8 @@ public class HiloConsola2 extends Thread {
 								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
 								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 								
-								jsonEnviado.put("accion", color);
-								jsonEnviado.put("color", 1);
+								jsonEnviado.put("accion", 1);
+								jsonEnviado.put("color", color);
 								
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
@@ -109,8 +109,8 @@ public class HiloConsola2 extends Thread {
 								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
 								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 						
-								jsonEnviado.put("accion", color);
-								jsonEnviado.put("color", 1);
+								jsonEnviado.put("accion", 1);
+								jsonEnviado.put("color", color);
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
@@ -132,8 +132,8 @@ public class HiloConsola2 extends Thread {
 								jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
 								jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 						
-								jsonEnviado.put("accion", color);
-								jsonEnviado.put("color", 1);
+								jsonEnviado.put("accion", 1);
+								jsonEnviado.put("color", color);
 								String mess = jsonEnviado.toString();
 								HiloConsolaPantalla2.outPantalla.writeUTF(mess);
 							} catch (IOException e1) {
@@ -147,23 +147,23 @@ public class HiloConsola2 extends Thread {
 						try {
 							JSONObject jsonEnviado = new JSONObject();
 							jsonEnviado.put("messageNum", "1");
-							jsonEnviado.put("anterioX", IntefazServidor2.posicionX);
-							jsonEnviado.put("anterioY", IntefazServidor2.posicionY);
+							jsonEnviado.put("anterioX", 49);
+							jsonEnviado.put("anterioY", 49);
 							
 							
 							jsonEnviado.put("nuevaX", IntefazServidor2.posicionX);
 							jsonEnviado.put("nuevaY", IntefazServidor2.posicionY);
 							
-							jsonEnviado.put("color", 1);
+							jsonEnviado.put("accion", 1);
 							
 							
 							if (color >= 7) {
 								color = 1;
-								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", color);
 							}
 							else {
 								color ++;
-								jsonEnviado.put("accion", color);
+								jsonEnviado.put("color", color);
 							}
 							
 							

@@ -46,6 +46,12 @@ public class PantallaGUI {
 	public static void cargarMatriz() {
 		for (int i=0; i<50; i++) {
 			for (int j=0; j<50; j++) {
+				JButton btnNewButton = new JButton ();
+				btnNewButton.setBackground(Color.gray);
+				btnNewButton.setOpaque(true);
+				matriz[i][j] =  btnNewButton;
+				frame.getContentPane().add(btnNewButton);
+				/*
 				if (i==24 && j==24) {
 					JButton btnNewButton = new JButton ();
 					btnNewButton.setBackground(Color.red);
@@ -59,7 +65,7 @@ public class PantallaGUI {
 					btnNewButton.setOpaque(true);
 					matriz[i][j] =  btnNewButton;
 					frame.getContentPane().add(btnNewButton); 
-				}
+				}*/
 			}
 		}
 	}
@@ -103,7 +109,7 @@ public class PantallaGUI {
 				
 			}
 		}
-		matriz[interfazServidor.posicionX][interfazServidor.posicionY].setBackground(color1);
+		//matriz[interfazServidor.posicionX][interfazServidor.posicionY].setBackground(color1);
 	}
 	
 	//RETORNA EL COLOR
@@ -123,7 +129,12 @@ public class PantallaGUI {
 		if (color.equals("MAGENTA")) 
 			return Color.MAGENTA;
 		if (color.equals("WHITE")) 
-			return Color.WHITE;
+			return Color.white;
+		if (color.equals("CYAN")) 
+			return Color.CYAN;
+		if (color.equals("grey")) 
+			return Color.gray;
+	
 		return Color.BLACK;
 		
 	}
@@ -156,8 +167,29 @@ public class PantallaGUI {
 	
 	public static void cambiosPantalla(int newX, int newY, int oldX, int oldY, int colorNew, int colorOld) {
 		
-		matriz[newX][newY].setBackground(color1);
+		if (colorOld == 0) 
+			matriz[newX][newY].setBackground(color1);
+		else if (colorOld == 1) 
+			matriz[newX][newY].setBackground(color2);
 		
+		else if (colorOld == 2) 
+			matriz[newX][newY].setBackground(color3);
+		
+		else if (colorOld == 3) 
+			matriz[newX][newY].setBackground(color4);
+		
+		else if (colorOld == 4) 
+			matriz[newX][newY].setBackground(color5);
+		
+		else if (colorOld == 5) 
+			matriz[newX][newY].setBackground(color6);
+		
+		else if (colorOld == 6) 
+			matriz[newX][newY].setBackground(color7);
+		
+		else if (colorOld == 7) 
+			matriz[newX][newY].setBackground(color8);
+		////////////////
 		if (colorNew == 1) 
 			matriz[oldX][oldY].setBackground(color2);
 		
